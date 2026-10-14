@@ -156,23 +156,47 @@ main {
 .lang {
   display: flex;
   align-items: center;
-  gap: 4px;
   border: 1px solid #4a4238;
-  padding: 4px 7px;
   font-size: 10px;
   flex-shrink: 0;
-}
-.lang b {
-  color: var(--gold);
-  font-weight: 600;
 }
 .lang i {
   font-style: normal;
   color: #6b6053;
 }
-.lang span {
+.lang button {
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 4px 6px;
+  min-height: 22px;
+  font: inherit;
+  font-size: 10px;
+  color: var(--paper);
+  cursor: pointer;
+}
+.lang button:last-child {
   font-family: var(--font-deva);
 }
+.lang button:hover {
+  color: var(--gold);
+}
+.lang button[aria-pressed="true"] {
+  color: var(--gold);
+  font-weight: 600;
+  cursor: default;
+}
+.lang button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+}
+
+/* Bilingual text: show the version matching <html data-lang> (Hindi by default). */
+html:not([data-lang="en"]) .l-en,
+html[data-lang="en"] .l-hi {
+  display: none !important;
+}
+
 .cta {
   background: var(--maroon);
   color: var(--paper);

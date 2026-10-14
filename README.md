@@ -18,6 +18,14 @@ npm run build   # static export to out/
 - `app/asset.ts` — prefixes `/assets/...` URLs with the Pages base path.
 - `public/assets/` — photos, scans, PDFs and videos used by the pages.
 
+## Languages (EN / हिं)
+
+Every piece of text exists in both languages: pages render `<L en="…" hi="…" />` (`app/lang.tsx`), which outputs
+both versions, and CSS shows the one matching `<html data-lang>`. The EN / हिं buttons in the header
+(`app/lang-client.ts`) switch it and remember the choice in `localStorage`; a small script in `<head>`
+(`app/lang-init.ts`) applies the saved choice before first paint. Hindi is the default.
+To edit copy, change both `en` and `hi` on the same `<L>`.
+
 ## Enquiry form
 
 The site is a static export, so the forms post JSON directly to `NEXT_PUBLIC_ENQUIRY_ENDPOINT`

@@ -1,28 +1,34 @@
 import Link from "next/link";
+import L from "./lang";
 
-const COLS = [
+type Item = { hi: string; en: string; href: string };
+
+const COLS: { hi: string; en: string; links: Item[] }[] = [
   {
-    title: "Programme",
+    hi: "कार्यक्रम",
+    en: "Programme",
     links: [
-      ["Work areas", "/work-areas"],
-      ["Leadership Index", "/model"],
-      ["Workshops", "/veda-vasundhara-1"],
+      { hi: "कार्यक्षेत्र", en: "Work areas", href: "/work-areas" },
+      { hi: "नेतृत्व सूचकांक", en: "Leadership Index", href: "/model" },
+      { hi: "कार्यशालाएँ", en: "Workshops", href: "/veda-vasundhara-1" },
     ],
   },
   {
-    title: "Transparency",
+    hi: "पारदर्शिता",
+    en: "Transparency",
     links: [
-      ["Registrations", "/credentials"],
-      ["Certificates", "/testimonials"],
-      ["Reports", "/research"],
+      { hi: "पंजीकरण", en: "Registrations", href: "/credentials" },
+      { hi: "प्रमाण-पत्र", en: "Certificates", href: "/testimonials" },
+      { hi: "रिपोर्ट", en: "Reports", href: "/research" },
     ],
   },
   {
-    title: "Contact",
+    hi: "संपर्क",
+    en: "Contact",
     links: [
-      ["Partner with us", "/partner"],
-      ["Media enquiries", "/contact"],
-      ["Volunteer", "/contact"],
+      { hi: "साझेदारी करें", en: "Partner with us", href: "/partner" },
+      { hi: "मीडिया पूछताछ", en: "Media enquiries", href: "/contact" },
+      { hi: "स्वयंसेवा", en: "Volunteer", href: "/contact" },
     ],
   },
 ];
@@ -32,15 +38,22 @@ export default function SiteFooter() {
     <footer className="site-footer">
       <div className="motto">
         <div>संगच्छध्वं संवदध्वं सं वो मनांसि जानताम् ॥</div>
-        <div>Move together, speak together, let our minds be of one accord — the motto carried in the campaign emblem.</div>
+        <div>
+          <L
+            hi="साथ चलें, साथ बोलें, हमारे मन एक हों — अभियान के प्रतीक-चिह्न में अंकित ध्येय वाक्य।"
+            en="Move together, speak together, let our minds be of one accord — the motto carried in the campaign emblem."
+          />
+        </div>
       </div>
       <div className="cols">
         {COLS.map((col) => (
-          <div className="col" key={col.title}>
-            <div>{col.title}</div>
-            {col.links.map(([label, href]) => (
-              <Link key={label} href={href}>
-                {label}
+          <div className="col" key={col.en}>
+            <div>
+              <L hi={col.hi} en={col.en} />
+            </div>
+            {col.links.map((link) => (
+              <Link key={link.en} href={link.href}>
+                <L hi={link.hi} en={link.en} />
               </Link>
             ))}
           </div>

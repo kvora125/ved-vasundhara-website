@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import SiteHeader from "./site-header";
 import SiteFooter from "./site-footer";
+import { LANG_INIT_SCRIPT } from "./lang-init";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,8 +19,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="hi">
+    <html lang="hi" data-lang="hi" suppressHydrationWarning>
       <head>
+        {/* Apply the saved language before first paint. */}
+        <script dangerouslySetInnerHTML={{ __html: LANG_INIT_SCRIPT }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         {/* eslint-disable-next-line @next/next/no-page-custom-font -- inline mockup styles reference these families by name */}

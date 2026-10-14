@@ -1,3 +1,4 @@
+import L from "../lang";
 import { asset } from "../asset";
 import EnquiryForm from "../enquiry-form";
 import Link from "next/link";
@@ -11,48 +12,48 @@ export default function PartnerPage() {
       <div className="rg1" style={{ padding: "clamp(25px, 4.9vw, 70px) clamp(20px, 3.9vw, 56px)", background: "#FFFCF6", borderBottom: "1px solid #E2D9C8", display: "grid", gridTemplateColumns: "1.3fr 1fr", gap: "clamp(23px, 4.4vw, 64px)", alignItems: "center" }}>
         <div>
           <div style={{ fontSize: "12px", letterSpacing: ".3em", textTransform: "uppercase", color: "#C8651B", marginBottom: "18px" }}>
-            CSR partnership
+            <L en={"CSR partnership"} hi={"CSR साझेदारी"} />
           </div>
           <div style={{ fontFamily: "'Marcellus','Noto Sans Devanagari',serif", fontSize: "clamp(28px, 3.5vw, 50px)", lineHeight: "1.15", marginBottom: "20px", textWrap: "pretty" }}>
-            एक कार्यशाला को सहयोग दें, एक पीढ़ी तक पहुँचें
+            <L en={"Support a workshop, reach a generation"} hi={"एक कार्यशाला को सहयोग दें, एक पीढ़ी तक पहुँचें"} />
             <br />
             <span style={{ fontSize: "clamp(20px, 2.4vw, 34px)", color: "#6E6459", fontFamily: "'Marcellus',serif" }}>
-              Fund a workshop. Reach a generation of leaders.
+              <L en={"एक कार्यशाला को सहयोग दें, नेतृत्वकर्ताओं की एक पीढ़ी तक पहुँचें।"} hi={"Fund a workshop. Reach a generation of leaders."} />
             </span>
           </div>
           <div style={{ fontSize: "17px", lineHeight: "1.75", color: "#6E6459" }}>
-            Phase I is a programme of three-day leadership workshops for women and youth in schools and colleges, with pre and post assessment against a five-dimension index and full documentation of every session.
+            <L en={"Phase I is a programme of three-day leadership workshops for women and youth in schools and colleges, with pre and post assessment against a five-dimension index and full documentation of every session."} hi={"चरण I विद्यालयों एवं महाविद्यालयों में महिलाओं एवं युवाओं के लिए त्रिदिवसीय नेतृत्व कार्यशालाओं का कार्यक्रम है — पाँच-आयामी सूचकांक पर पूर्व एवं पश्चात मूल्यांकन तथा प्रत्येक सत्र के पूर्ण दस्तावेज़ीकरण के साथ।"} />
           </div>
         </div>
         <div style={{ border: "1px solid #E2D9C8", background: "#F6F1E7", padding: "clamp(16px, 2.2vw, 32px)" }}>
           <div style={{ fontSize: "12px", letterSpacing: ".2em", textTransform: "uppercase", color: "#6E6459", marginBottom: "18px" }}>
-            Programme summary
+            <L en={"Programme summary"} hi={"कार्यक्रम सारांश"} />
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "15px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #E2D9C8", paddingBottom: "10px" }}>
               <span style={{ color: "#6E6459" }}>
-                Project phase
+                <L en={"Project phase"} hi={"परियोजना चरण"} />
               </span>
               <span style={{ fontWeight: "600" }}>
-                Phase I
+                <L en={"Phase I"} hi={"चरण I"} />
               </span>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #E2D9C8", paddingBottom: "10px" }}>
               <span style={{ color: "#6E6459" }}>
-                Programme
+                <L en={"Programme"} hi={"कार्यक्रम"} />
               </span>
               <span className="tr" style={{ fontWeight: "600", textAlign: "right" }}>
-                Three-day youth
+                <L en={"Three-day youth"} hi={"त्रिदिवसीय युवा"} />
                 <br />
-                leadership workshops
+                <L en={"leadership workshops"} hi={"नेतृत्व कार्यशालाएँ"} />
               </span>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #E2D9C8", paddingBottom: "10px" }}>
               <span style={{ color: "#6E6459" }}>
-                Target group
+                <L en={"Target group"} hi={"लक्षित समूह"} />
               </span>
               <span style={{ fontWeight: "600" }}>
-                Women and youth
+                <L en={"Women and youth"} hi={"महिलाएँ एवं युवा"} />
               </span>
             </div>
           </div>
@@ -65,64 +66,64 @@ export default function PartnerPage() {
         </a>
         <div>
           <div style={{ fontSize: "12px", letterSpacing: ".3em", textTransform: "uppercase", color: "#E8B24C", marginBottom: "16px" }}>
-            राजभवन, उत्तर प्रदेश · 14 सितम्बर 2026
+            <L en={"Raj Bhavan, Uttar Pradesh · 14 September 2026"} hi={"राजभवन, उत्तर प्रदेश · 14 सितम्बर 2026"} />
           </div>
           <div style={{ fontFamily: "'Noto Sans Devanagari',sans-serif", fontSize: "clamp(20px, 2.1vw, 30px)", fontWeight: "600", lineHeight: "1.55", marginBottom: "18px", textWrap: "pretty" }}>
-            &quot;&apos;वेद वसुंधरा मॉडल&apos; की सफलता एवं समिति के भावी प्रयासों के लिए मेरी हार्दिक शुभकामनाएँ।&quot;
+            <L en={"\"My heartfelt good wishes for the success of the 'Veda Vasundhara Model' and the Samiti's future efforts.\""} hi={"\"'वेद वसुंधरा मॉडल' की सफलता एवं समिति के भावी प्रयासों के लिए मेरी हार्दिक शुभकामनाएँ।\""} />
           </div>
           <div style={{ fontFamily: "'Noto Sans Devanagari',sans-serif", fontSize: "17px", color: "#DCD2C2" }}>
-            श्रीमती आनंदीबेन पटेल — राज्यपाल, उत्तर प्रदेश
+            <L en={"Smt. Anandiben Patel — Governor, Uttar Pradesh"} hi={"श्रीमती आनंदीबेन पटेल — राज्यपाल, उत्तर प्रदेश"} />
           </div>
         </div>
       </div>
 
       <div style={{ padding: "clamp(23px, 4.4vw, 64px) clamp(20px, 3.9vw, 56px)" }}>
         <div style={{ fontFamily: "'Marcellus','Noto Sans Devanagari',serif", fontSize: "clamp(20px, 2.4vw, 34px)", marginBottom: "clamp(16px, 2.1vw, 30px)" }}>
-          सहयोग के माध्यम · Ways to partner
+          <L en={"Ways to partner"} hi={"सहयोग के माध्यम"} />
         </div>
         <div className="rg2 rgw" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "22px" }}>
           <div style={{ background: "#FFFCF6", borderTop: "3px solid #9B1C1C", padding: "clamp(16px, 2.1vw, 30px) 26px" }}>
             <div style={{ fontFamily: "'Marcellus','Noto Sans Devanagari',serif", fontSize: "clamp(20px, 1.7vw, 24px)", marginBottom: "12px" }}>
-              सीएसआर अनुदान · CSR grant
+              <L en={"CSR grant"} hi={"सीएसआर अनुदान"} />
             </div>
             <div style={{ fontSize: "15px", lineHeight: "1.7", color: "#6E6459", marginBottom: "18px" }}>
-              Fund a workshop cohort or a programme component. CSR-1 registered; audited utilisation certificates provided.
+              <L en={"Fund a workshop cohort or a programme component. CSR-1 registered; audited utilisation certificates provided."} hi={"किसी कार्यशाला समूह या कार्यक्रम घटक को वित्तपोषित करें। CSR-1 पंजीकृत; अंकेक्षित उपयोगिता प्रमाण-पत्र उपलब्ध।"} />
             </div>
             <Link href="/contact" style={{ fontSize: "14px", color: "#9B1C1C", fontWeight: "600", display: "block" }}>
-              Request the proposal ↓
+              <L en={"Request the proposal ↓"} hi={"प्रस्ताव मंगाएँ ↓"} />
             </Link>
           </div>
           <div style={{ background: "#FFFCF6", borderTop: "3px solid #C8651B", padding: "clamp(16px, 2.1vw, 30px) 26px" }}>
             <div style={{ fontFamily: "'Marcellus','Noto Sans Devanagari',serif", fontSize: "clamp(20px, 1.7vw, 24px)", marginBottom: "12px" }}>
-              कार्यशाला आयोजित करें · Host a workshop
+              <L en={"Host a workshop"} hi={"कार्यशाला आयोजित करें"} />
             </div>
             <div style={{ fontSize: "15px", lineHeight: "1.7", color: "#6E6459", marginBottom: "18px" }}>
-              Schools, colleges and universities can invite the three-day programme onto their campus.
+              <L en={"Schools, colleges and universities can invite the three-day programme onto their campus."} hi={"विद्यालय, महाविद्यालय एवं विश्वविद्यालय त्रिदिवसीय कार्यक्रम को अपने परिसर में आमंत्रित कर सकते हैं।"} />
             </div>
             <Link href="/contact" style={{ fontSize: "14px", color: "#9B1C1C", fontWeight: "600", display: "block" }}>
-              Institutional enquiry →
+              <L en={"Institutional enquiry →"} hi={"संस्थागत पूछताछ →"} />
             </Link>
           </div>
           <div style={{ background: "#FFFCF6", borderTop: "3px solid #2E5A3C", padding: "clamp(16px, 2.1vw, 30px) 26px" }}>
             <div style={{ fontFamily: "'Marcellus','Noto Sans Devanagari',serif", fontSize: "clamp(20px, 1.7vw, 24px)", marginBottom: "12px" }}>
-              स्वयंसेवा · Volunteer or train
+              <L en={"Volunteer or train"} hi={"स्वयंसेवा"} />
             </div>
             <div style={{ fontSize: "15px", lineHeight: "1.7", color: "#6E6459", marginBottom: "18px" }}>
-              Resource persons, subject experts and facilitators for leadership, culture and skill sessions.
+              <L en={"Resource persons, subject experts and facilitators for leadership, culture and skill sessions."} hi={"नेतृत्व, संस्कृति एवं कौशल सत्रों के लिए संसाधन व्यक्ति, विषय विशेषज्ञ एवं सहायक प्रशिक्षक।"} />
             </div>
             <Link href="/contact" style={{ fontSize: "14px", color: "#9B1C1C", fontWeight: "600", display: "block" }}>
-              Apply as a trainer →
+              <L en={"Apply as a trainer →"} hi={"प्रशिक्षक के रूप में आवेदन करें →"} />
             </Link>
           </div>
           <div style={{ background: "#FFFCF6", borderTop: "3px solid #16110D", padding: "clamp(16px, 2.1vw, 30px) 26px" }}>
             <div style={{ fontFamily: "'Marcellus','Noto Sans Devanagari',serif", fontSize: "clamp(20px, 1.7vw, 24px)", marginBottom: "12px" }}>
-              सहयोग राशि · Donate
+              <L en={"Donate"} hi={"सहयोग राशि"} />
             </div>
             <div style={{ fontSize: "15px", lineHeight: "1.7", color: "#6E6459", marginBottom: "18px" }}>
-              Individual contributions towards workshop kits, handbooks and certificates. 80G exemption applies.
+              <L en={"Individual contributions towards workshop kits, handbooks and certificates. 80G exemption applies."} hi={"कार्यशाला किट, पुस्तिकाओं एवं प्रमाण-पत्रों हेतु व्यक्तिगत सहयोग। 80G छूट लागू।"} />
             </div>
             <Link href="/crowdfunding" style={{ fontSize: "14px", color: "#9B1C1C", fontWeight: "600", display: "block" }}>
-              Contribute →
+              <L en={"Contribute →"} hi={"सहयोग करें →"} />
             </Link>
           </div>
         </div>
@@ -131,33 +132,33 @@ export default function PartnerPage() {
       <div className="rg1" style={{ background: "#16110D", color: "#F6F1E7", padding: "clamp(22px, 4.2vw, 60px) clamp(20px, 3.9vw, 56px)", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(26px, 5vw, 72px)" }}>
         <div>
           <div style={{ fontFamily: "'Marcellus','Noto Sans Devanagari',serif", fontSize: "clamp(20px, 2.4vw, 34px)", marginBottom: "16px" }}>
-            साझेदारी हेतु संपर्क करें · Talk to us about a partnership
+            <L en={"Talk to us about a partnership"} hi={"साझेदारी हेतु संपर्क करें"} />
           </div>
           <div style={{ fontSize: "16px", lineHeight: "1.75", color: "#B7AC9C", marginBottom: "clamp(16px, 1.9vw, 28px)" }}>
-            Tell us what you want to support and we will send the detailed project proposal and our registration documents.
+            <L en={"Tell us what you want to support and we will send the detailed project proposal and our registration documents."} hi={"बताइए कि आप किस कार्य में सहयोग करना चाहते हैं — हम विस्तृत परियोजना प्रस्ताव एवं अपने पंजीकरण दस्तावेज़ भेजेंगे।"} />
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px", fontSize: "15px", color: "#E5DDCE" }}>
             <div>
-              CSR-1 registered · 80G exemption · audited accounts
+              <L en={"CSR-1 registered · 80G exemption · audited accounts"} hi={"CSR-1 पंजीकृत · 80G छूट · अंकेक्षित लेखा"} />
             </div>
             <div style={{ color: "#9C9287" }}>
-              Documents shared within two working days
+              <L en={"Documents shared within two working days"} hi={"दस्तावेज़ दो कार्य-दिवसों में साझा किए जाते हैं"} />
             </div>
           </div>
           <a href={asset("/assets/doc-csr1.jpg")} target="_blank" rel="noopener noreferrer" className="rg1" style={{ marginTop: "clamp(16px, 1.9vw, 28px)", display: "grid", gridTemplateColumns: "150px minmax(0,1fr)", gap: "22px", alignItems: "center", border: "1px solid #3B342B", padding: "14px", textDecoration: "none", color: "#F6F1E7" }}>
             <img src={asset("/assets/doc-csr1.jpg")} alt="Form CSR-1 — MCA" style={{ width: "150px", height: "190px", objectFit: "cover", objectPosition: "top", display: "block", background: "#FFFCF6" }} />
             <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
               <div style={{ fontSize: "11px", letterSpacing: ".24em", textTransform: "uppercase", color: "#E8B24C" }}>
-                Ministry of Corporate Affairs
+                <L en={"Ministry of Corporate Affairs"} hi={"कॉर्पोरेट कार्य मंत्रालय"} />
               </div>
               <div style={{ fontFamily: "'Marcellus',serif", fontSize: "clamp(18px, 1.5vw, 22px)" }}>
-                Form CSR-1 पंजीकरण
+                <L en={"Form CSR-1 registration"} hi={"Form CSR-1 पंजीकरण"} />
               </div>
               <div style={{ fontSize: "14px", lineHeight: "1.7", color: "#B7AC9C" }}>
-                Registered society under 12A &amp; 80G · Reg. no. 032149 · 3-year track record ✓
+                <L en={"Registered society under 12A & 80G · Reg. no. 032149 · 3-year track record ✓"} hi={"12A एवं 80G के अंतर्गत पंजीकृत सोसाइटी · पंजीकरण सं. 032149 · 3 वर्ष का कार्य-अनुभव ✓"} />
               </div>
               <div style={{ fontSize: "13px", color: "#E8B24C" }}>
-                देखें ↗
+                <L en={"View ↗"} hi={"देखें ↗"} />
               </div>
             </div>
           </a>

@@ -2,7 +2,7 @@ export type NavItem = {
   hi: string;
   en: string;
   href: string;
-  children?: { label: string; href: string }[];
+  children?: { hi: string; en: string; href: string }[];
 };
 
 export const NAV: NavItem[] = [
@@ -12,8 +12,8 @@ export const NAV: NavItem[] = [
     en: "Model",
     href: "/model",
     children: [
-      { label: "वेद वसुंधरा मॉडल · The Model", href: "/model" },
-      { label: "दृष्टि, ध्येय एवं मूल्य · Vision & Mission", href: "/vision-mission" },
+      { hi: "वेद वसुंधरा मॉडल", en: "The Model", href: "/model" },
+      { hi: "दृष्टि, ध्येय एवं मूल्य", en: "Vision, Mission & Values", href: "/vision-mission" },
     ],
   },
   {
@@ -21,8 +21,8 @@ export const NAV: NavItem[] = [
     en: "Programmes",
     href: "/work-areas",
     children: [
-      { label: "कार्यक्षेत्र · Work Areas", href: "/work-areas" },
-      { label: "वेद वसुंधरा 1.0", href: "/veda-vasundhara-1" },
+      { hi: "कार्यक्षेत्र", en: "Work Areas", href: "/work-areas" },
+      { hi: "वेद वसुंधरा 1.0", en: "Veda Vasundhara 1.0", href: "/veda-vasundhara-1" },
     ],
   },
   { hi: "प्रभाव", en: "Impact", href: "/impact" },
@@ -32,8 +32,8 @@ export const NAV: NavItem[] = [
     en: "Founder",
     href: "/founder",
     children: [
-      { label: "संस्थापक · Founder", href: "/founder" },
-      { label: "शोध एवं प्रकाशन · Research", href: "/research" },
+      { hi: "संस्थापक", en: "Founder", href: "/founder" },
+      { hi: "शोध एवं प्रकाशन", en: "Research & Publications", href: "/research" },
     ],
   },
   { hi: "संस्था", en: "Institution", href: "/organisation" },
@@ -43,8 +43,8 @@ export const NAV: NavItem[] = [
     en: "Support",
     href: "/partner",
     children: [
-      { label: "सहयोग · Partner with us", href: "/partner" },
-      { label: "जन-सहयोग · Crowdfunding", href: "/crowdfunding" },
+      { hi: "सहयोग", en: "Partner with us", href: "/partner" },
+      { hi: "जन-सहयोग", en: "Crowdfunding", href: "/crowdfunding" },
     ],
   },
   {
@@ -52,8 +52,8 @@ export const NAV: NavItem[] = [
     en: "Credentials",
     href: "/credentials",
     children: [
-      { label: "प्रमाण · Credentials", href: "/credentials" },
-      { label: "प्रशंसा-पत्र · Testimonials", href: "/testimonials" },
+      { hi: "प्रमाण", en: "Credentials", href: "/credentials" },
+      { hi: "प्रशंसा-पत्र", en: "Testimonials", href: "/testimonials" },
     ],
   },
   { hi: "संपर्क", en: "Contact", href: "/contact" },
