@@ -96,7 +96,7 @@ export default function WorkAreasPage() {
               <L en={"नेतृत्व एवं आत्मनिर्भरता"} hi={"Leadership & Self-Reliance"} />
             </div>
             <div style={{ fontFamily: "'Noto Sans Devanagari',sans-serif", fontSize: "16px", lineHeight: "1.8", color: "#4A423A" }}>
-              <L en={"Leadership, entrepreneurship, employability, skill development और employment creation।"} hi={"नेतृत्व, उद्यमिता, रोजगार-योग्यता, कौशल विकास और रोजगार सृजन।"} />
+              <L en={"Leadership, entrepreneurship, employability, skill development and employment creation."} hi={"नेतृत्व, उद्यमिता, रोजगार-योग्यता, कौशल विकास और रोजगार सृजन।"} />
             </div>
           </div>
           <div style={{ background: "#FFFCF6", padding: "clamp(16px, 2.2vw, 32px) clamp(16px, 2.1vw, 30px)" }}>

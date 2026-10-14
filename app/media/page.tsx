@@ -457,7 +457,7 @@ export default function MediaPage() {
                   <L en={"A grand, divine and extraordinary convention of Matrishakti held at Ahilyabai Stadium for the first time"} hi={"अहिल्याबाई स्टेडियम में प्रथम बार हुआ भव्य, दिव्य और अलौकिक मातृशक्ति का विशाल सम्मेलन"} />
                 </div>
                 <div style={{ fontFamily: "'Noto Sans Devanagari',sans-serif", fontSize: "13px", color: "#6E6459", marginTop: "6px" }}>
-                  <L en={"EPaper · आगरा"} hi={"ई-पेपर · आगरा"} />
+                  <L en={"EPaper · Agra"} hi={"ई-पेपर · आगरा"} />
                 </div>
               </div>
             </a>

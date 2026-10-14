@@ -37,3 +37,8 @@ Without it the form shows a "could not be sent" message.
 
 `.github/workflows/deploy.yml` builds the static export and publishes it to GitHub Pages on every push to `main`
 (including merged pull requests). Pull requests targeting `main` are built as a check but not published.
+
+The site is served at **https://www.vedvasundharamodel.org.in/** (custom domain set under Settings → Pages,
+HTTPS enforced; DNS at Hostinger: `www` CNAME → `kvora125.github.io`, apex A/AAAA → GitHub Pages IPs).
+The build reads the URL prefix from the Pages settings, so **after changing the custom domain, re-run the
+workflow** (Actions → Deploy to GitHub Pages → Run workflow); otherwise CSS and images keep the old path and 404.
