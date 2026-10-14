@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useLang } from "./lang-client";
 
 type Variant = "contact" | "partner";
 type Status = "idle" | "sending" | "sent" | "error";
@@ -9,10 +10,29 @@ type Status = "idle" | "sending" | "sent" | "error";
 // form service that accepts JSON with CORS (e.g. https://formspree.io/f/xxxx).
 const ENDPOINT = process.env.NEXT_PUBLIC_ENQUIRY_ENDPOINT;
 
+const TEXT = {
+  organisation: { en: "Organisation name", hi: "संस्था का नाम" },
+  contactPerson: { en: "Contact person", hi: "संपर्क व्यक्ति" },
+  email: { en: "Email", hi: "ईमेल" },
+  phone: { en: "Phone", hi: "फ़ोन" },
+  partnership: { en: "Type of partnership", hi: "साझेदारी का प्रकार" },
+  message: { en: "Message", hi: "संदेश" },
+  fullName: { en: "Full name", hi: "पूरा नाम" },
+  topic: { en: "I am writing about…", hi: "मैं इस विषय में लिख रहा/रही हूँ…" },
+  institution: { en: "Institution / organisation (optional)", hi: "संस्थान / संगठन (वैकल्पिक)" },
+  sending: { en: "Sending…", hi: "भेजा जा रहा है…" },
+  sendEnquiry: { en: "Send enquiry", hi: "पूछताछ भेजें" },
+  sendMessage: { en: "Send message", hi: "संदेश भेजें" },
+  sent: { en: "Thank you — your message has been sent. We will get back to you soon.", hi: "धन्यवाद — आपका संदेश भेज दिया गया है। हम शीघ्र ही आपसे संपर्क करेंगे।" },
+  error: { en: "The message could not be sent right now. Please try again later.", hi: "संदेश अभी नहीं भेजा जा सका। कृपया बाद में पुनः प्रयास करें।" },
+};
+
 export default function EnquiryForm({ variant }: { variant: Variant }) {
   const [status, setStatus] = useState<Status>("idle");
   const dark = variant === "partner";
   const fieldClass = dark ? "field field-dark" : "field";
+  const lang = useLang();
+  const t = (key: keyof typeof TEXT) => TEXT[key][lang];
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -38,39 +58,39 @@ export default function EnquiryForm({ variant }: { variant: Variant }) {
       {variant === "partner" ? (
         <>
           <div className="rg2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-            <input className={fieldClass} name="organisation" placeholder="Organisation name" aria-label="Organisation name" />
-            <input className={fieldClass} name="name" placeholder="Contact person" aria-label="Contact person" required />
+            <input className={fieldClass} name="organisation" placeholder={t("organisation")} aria-label={t("organisation")} />
+            <input className={fieldClass} name="name" placeholder={t("contactPerson")} aria-label={t("contactPerson")} required />
           </div>
           <div className="rg2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-            <input className={fieldClass} type="email" name="email" placeholder="Email" aria-label="Email" required />
-            <input className={fieldClass} type="tel" name="phone" placeholder="Phone" aria-label="Phone" />
+            <input className={fieldClass} type="email" name="email" placeholder={t("email")} aria-label={t("email")} required />
+            <input className={fieldClass} type="tel" name="phone" placeholder={t("phone")} aria-label={t("phone")} />
           </div>
-          <input className={fieldClass} name="partnership" placeholder="Type of partnership" aria-label="Type of partnership" />
-          <textarea className={fieldClass} name="message" placeholder="Message" aria-label="Message" required />
+          <input className={fieldClass} name="partnership" placeholder={t("partnership")} aria-label={t("partnership")} />
+          <textarea className={fieldClass} name="message" placeholder={t("message")} aria-label={t("message")} required />
         </>
       ) : (
         <>
-          <input className={fieldClass} name="name" placeholder="Full name" aria-label="Full name" required />
+          <input className={fieldClass} name="name" placeholder={t("fullName")} aria-label={t("fullName")} required />
           <div className="rg2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-            <input className={fieldClass} type="email" name="email" placeholder="Email" aria-label="Email" required />
-            <input className={fieldClass} type="tel" name="phone" placeholder="Phone" aria-label="Phone" />
+            <input className={fieldClass} type="email" name="email" placeholder={t("email")} aria-label={t("email")} required />
+            <input className={fieldClass} type="tel" name="phone" placeholder={t("phone")} aria-label={t("phone")} />
           </div>
-          <input className={fieldClass} name="topic" placeholder="I am writing about…" aria-label="Topic" />
-          <input className={fieldClass} name="organisation" placeholder="Institution / organisation (optional)" aria-label="Institution or organisation" />
-          <textarea className={fieldClass} name="message" placeholder="Message" aria-label="Message" required />
+          <input className={fieldClass} name="topic" placeholder={t("topic")} aria-label={t("topic")} />
+          <input className={fieldClass} name="organisation" placeholder={t("institution")} aria-label={t("institution")} />
+          <textarea className={fieldClass} name="message" placeholder={t("message")} aria-label={t("message")} required />
         </>
       )}
       <button type="submit" className={dark ? "submit submit-saffron" : "submit"} disabled={status === "sending"}>
-        {status === "sending" ? "Sending…" : variant === "partner" ? "Send enquiry" : "Send message"}
+        {status === "sending" ? t("sending") : variant === "partner" ? t("sendEnquiry") : t("sendMessage")}
       </button>
       {status === "sent" && (
         <p role="status" style={{ margin: 0, fontSize: 14, color: dark ? "#E8B24C" : "#2E5A3C" }}>
-          धन्यवाद — your message has been sent. We will get back to you soon.
+          {t("sent")}
         </p>
       )}
       {status === "error" && (
         <p role="alert" style={{ margin: 0, fontSize: 14, color: dark ? "#F0A08A" : "#9B1C1C" }}>
-          The message could not be sent right now. Please try again later.
+          {t("error")}
         </p>
       )}
     </form>
