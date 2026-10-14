@@ -28,10 +28,13 @@ To edit copy, change both `en` and `hi` on the same `<L>`.
 
 ## Enquiry form
 
-The site is a static export, so the forms post JSON directly to `NEXT_PUBLIC_ENQUIRY_ENDPOINT`
-(a CORS-enabled form service such as Formspree). Locally, set it in `.env.local` (see `.env.example`);
-for the deployed site, add it as a repository variable (Settings → Secrets and variables → Actions → Variables).
-Without it the form shows a "could not be sent" message.
+The site is a static export, so the Contact and Partner forms post JSON directly to `NEXT_PUBLIC_ENQUIRY_ENDPOINT`.
+It is set as a repository variable (Settings → Secrets and variables → Actions → Variables) to
+`https://formsubmit.co/ajax/shikhadeva@gmail.com`: FormSubmit emails each enquiry to that address, with the
+sender as Reply-To. The very first submission triggers a one-time **activation email** to that inbox — click
+"Activate Form" in it; until then submissions are not delivered. After activation FormSubmit offers a random
+alias for the address; replace the email in the variable with it to keep the address out of the page's JavaScript,
+then re-run the deploy workflow. Locally, set the variable in `.env.local` (see `.env.example`).
 
 ## Deployment
 
