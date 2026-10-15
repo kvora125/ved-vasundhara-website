@@ -30,7 +30,7 @@ To edit copy, change both `en` and `hi` on the same `<L>`.
 
 The site is a static export, so the Contact and Partner forms post JSON directly to `NEXT_PUBLIC_ENQUIRY_ENDPOINT`.
 It is set as a repository variable (Settings → Secrets and variables → Actions → Variables) to
-`https://formsubmit.co/ajax/shikhadeva@gmail.com`: FormSubmit emails each enquiry to that address, with the
+`https://formsubmit.co/ajax/syuvaadarshsamiti@gmail.com`: FormSubmit emails each enquiry to that address, with the
 sender as Reply-To. The very first submission triggers a one-time **activation email** to that inbox — click
 "Activate Form" in it; until then submissions are not delivered. After activation FormSubmit offers a random
 alias for the address; replace the email in the variable with it to keep the address out of the page's JavaScript,
