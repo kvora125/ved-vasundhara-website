@@ -7,8 +7,14 @@ type Variant = "contact" | "partner";
 type Status = "idle" | "sending" | "sent" | "error";
 
 // The site is a static export, so enquiries go straight from the browser to a
-// form service that accepts JSON with CORS (e.g. https://formspree.io/f/xxxx).
+// form service that accepts JSON with CORS and emails them on
+// (e.g. https://formsubmit.co/ajax/<address or alias>, or a Formspree form URL).
 const ENDPOINT = process.env.NEXT_PUBLIC_ENQUIRY_ENDPOINT;
+
+const SUBJECT = {
+  contact: "New enquiry — Contact form · vedvasundharamodel.org.in",
+  partner: "New partnership enquiry — Partner form · vedvasundharamodel.org.in",
+};
 
 const TEXT = {
   organisation: { en: "Organisation name", hi: "संस्था का नाम" },
@@ -40,12 +46,30 @@ export default function EnquiryForm({ variant }: { variant: Variant }) {
     setStatus("sending");
     try {
       if (!ENDPOINT) throw new Error("NEXT_PUBLIC_ENQUIRY_ENDPOINT is not set");
+      const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+      if (data._honey) {
+        // Honeypot filled in: almost certainly a bot. Pretend success, send nothing.
+        form.reset();
+        setStatus("sent");
+        return;
+      }
+      delete data._honey;
       const res = await fetch(ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ form: variant, ...Object.fromEntries(new FormData(form)) }),
+        body: JSON.stringify({
+          form: variant,
+          ...data,
+          // Understood by FormSubmit and Formspree: email subject, reply goes to the sender.
+          _subject: SUBJECT[variant],
+          _replyto: data.email,
+          _template: "table",
+          _captcha: "false",
+        }),
       });
-      if (!res.ok) throw new Error(String(res.status));
+      const body = await res.json().catch(() => ({}));
+      // FormSubmit answers 200 with { success: "false" } when the form is not yet activated.
+      if (!res.ok || body.success === false || body.success === "false") throw new Error(body.message || String(res.status));
       form.reset();
       setStatus("sent");
     } catch {
@@ -55,6 +79,8 @@ export default function EnquiryForm({ variant }: { variant: Variant }) {
 
   return (
     <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+      {/* Spam trap: hidden from people, filled in by bots. */}
+      <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: "none" }} />
       {variant === "partner" ? (
         <>
           <div className="rg2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
