@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useLang } from "./lang-client";
+import type { Lang } from "./i18n";
 
 type Variant = "contact" | "partner";
 type Status = "idle" | "sending" | "sent" | "error";
@@ -33,11 +33,10 @@ const TEXT = {
   error: { en: "The message could not be sent right now. Please try again later.", hi: "संदेश अभी नहीं भेजा जा सका। कृपया बाद में पुनः प्रयास करें।" },
 };
 
-export default function EnquiryForm({ variant }: { variant: Variant }) {
+export default function EnquiryForm({ variant, lang }: { variant: Variant; lang: Lang }) {
   const [status, setStatus] = useState<Status>("idle");
   const dark = variant === "partner";
   const fieldClass = dark ? "field field-dark" : "field";
-  const lang = useLang();
   const t = (key: keyof typeof TEXT) => TEXT[key][lang];
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {

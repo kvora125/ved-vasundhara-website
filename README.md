@@ -20,11 +20,33 @@ npm run build   # static export to out/
 
 ## Languages (EN / हिं)
 
-Every piece of text exists in both languages: pages render `<L en="…" hi="…" />` (`app/lang.tsx`), which outputs
-both versions, and CSS shows the one matching `<html data-lang>`. The EN / हिं buttons in the header
-(`app/lang-client.ts`) switch it and remember the choice in `localStorage`; a small script in `<head>`
-(`app/lang-init.ts`) applies the saved choice before first paint. Hindi is the default.
-To edit copy, change both `en` and `hi` on the same `<L>`.
+Each page exists twice: Hindi at `/…` and English at `/en/…` (e.g. `/model/` and `/en/model/`). Page content lives in
+`app/_content/<page>.tsx` and takes a `lang` prop; every text is written as `<L lang={lang} en="…" hi="…" />`
+(`app/lang.tsx`), so to edit copy change both `en` and `hi` on the same `<L>`. The route files under `app/` and
+`app/en/` only pick the language and set metadata.
+
+- The EN / हिं links in the header go to the same page in the other language and remember the choice.
+  A visitor who chose English is sent from Hindi URLs to `/en/…` on later visits (`app/lang-pref.ts`);
+  search engines never carry that choice, so both versions stay indexable.
+- Every page has its own title, description, canonical URL and `hreflang` pair (`app/seo-pages.ts`, `app/seo.ts`).
+
+## SEO
+
+- `app/seo-pages.ts` — title (≤ 60 chars) and description (≤ 160) per page and language.
+- `app/seo.ts` — metadata (canonical, hreflang, Open Graph/Twitter) and schema.org JSON-LD: NGO, WebSite,
+  founder (Person), books, breadcrumbs, and NewsArticle/Event for Sheet content. Public contact details: `app/org.ts`.
+- `app/sitemap.ts`, `app/robots.ts`, `app/manifest.ts`, icons in `app/` and `public/icons/`, share image `public/og/`.
+- Fonts are self-hosted (`app/fonts.css`, `public/fonts/`); images carry width/height and lazy-load below the fold.
+
+## Content admin (Google Sheet)
+
+News, events, photo albums and new press coverage are added in a Google Sheet — see [`cms/README.md`](cms/README.md).
+`npm run build` runs `scripts/fetch-cms.mjs` first, which pulls approved rows from `CMS_ENDPOINT`.
+
+## Analytics (GA4)
+
+`app/consent.tsx` shows a bilingual consent banner; Google Analytics loads only after "Accept". It is off until the
+`NEXT_PUBLIC_GA_ID` repository variable (e.g. `G-XXXXXXXXXX`) is set. "Cookie settings" in the footer reopens the banner.
 
 ## Enquiry form
 

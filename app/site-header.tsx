@@ -3,81 +3,108 @@
 import { asset } from "./asset";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import L from "./lang";
-import { applyStoredLang, setLang, useLang } from "./lang-client";
+import { counterpartPath, langFromPath, localHref, type Lang } from "./i18n";
+import { LANG_PREF_KEY } from "./lang-pref";
 import { NAV, isActive } from "./site-nav";
 
-function LangSwitch() {
-  const lang = useLang();
+function rememberLang(lang: Lang) {
+  try {
+    localStorage.setItem(LANG_PREF_KEY, lang);
+  } catch {
+    // Storage unavailable (private mode): the link still switches language.
+  }
+}
+
+// Plain links (full page load), so include the trailing slash the static export serves.
+const withSlash = (p: string) => (p.endsWith("/") ? p : `${p}/`);
+
+function LangSwitch({ pathname, lang }: { pathname: string; lang: Lang }) {
   return (
     <div className="lang" role="group" aria-label="Language / भाषा">
-      <button type="button" lang="en" aria-pressed={lang === "en"} onClick={() => setLang("en")}>
+      <a
+        href={withSlash(counterpartPath(pathname, "en"))}
+        hrefLang="en"
+        lang="en"
+        aria-current={lang === "en" ? "true" : undefined}
+        onClick={() => rememberLang("en")}
+      >
         EN
-      </button>
+      </a>
       <i aria-hidden="true">|</i>
-      <button type="button" lang="hi" aria-pressed={lang === "hi"} onClick={() => setLang("hi")} aria-label="हिंदी">
+      <a
+        href={withSlash(counterpartPath(pathname, "hi"))}
+        hrefLang="hi"
+        lang="hi"
+        aria-label="हिंदी"
+        aria-current={lang === "hi" ? "true" : undefined}
+        onClick={() => rememberLang("hi")}
+      >
         हिं
-      </button>
+      </a>
     </div>
   );
 }
 
-const CTA = <L hi="कार्यशाला से जुड़ें" en="Join a workshop" />;
-
 export default function SiteHeader() {
-  const pathname = usePathname().replace(/(.)\/$/, "$1");
+  const raw = usePathname().replace(/(.)\/$/, "$1");
+  // The shared 404 page renders as /_not-found; its language links should go home.
+  const fullPath = raw.endsWith("/_not-found") ? "/" : raw;
+  const lang = langFromPath(fullPath);
+  // Path without the /en prefix, used for active-state matching.
+  const pathname = lang === "en" ? fullPath.slice(3) || "/" : fullPath;
   const [open, setOpen] = useState(false);
-
-  useEffect(applyStoredLang, []);
+  const href = (p: string) => localHref(lang, p);
+  const cta = <L lang={lang} hi="कार्यशाला से जुड़ें" en="Join a workshop" />;
 
   return (
     <header className="site-header">
-      <Link href="/" className="brand">
-        <img src={asset("/assets/logo-192.png")} alt="वेद वसुंधरा मॉडल" />
+      <Link href={href("/")} className="brand">
+        <img src={asset("/assets/logo-192.png")} alt="" width={46} height={46} />
         <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
           <div className="brand-name">
-            <L hi="वेद वसुंधरा मॉडल" en="Veda Vasundhara Model" />
+            <L lang={lang} hi="वेद वसुंधरा मॉडल" en="Veda Vasundhara Model" />
           </div>
           <div className="brand-sub">Sanskarit Yuva Aadarsh Samiti</div>
         </div>
       </Link>
 
-      <nav className="nav" aria-label="Main">
+      <nav className="nav" aria-label={lang === "en" ? "Main" : "मुख्य"}>
         {NAV.map((item) => (
           <div className="nav-item" key={item.href}>
-            <Link href={item.href} className={`nav-link${isActive(item, pathname) ? " active" : ""}`}>
+            <Link href={href(item.href)} className={`nav-link${isActive(item, pathname) ? " active" : ""}`}>
               <span className="hi">
-                <L hi={item.hi} en={item.en} />
+                <L lang={lang} hi={item.hi} en={item.en} />
               </span>
               <span className="en">
-                <L hi={item.en} en={item.hi} />
+                <L lang={lang} hi={item.en} en={item.hi} />
               </span>
             </Link>
             {item.children && (
               <div className="nav-sub">
                 {item.children.map((c) => (
-                  <Link key={c.href} href={c.href} className={pathname === c.href ? "active" : undefined}>
-                    <L hi={c.hi} en={c.en} />
+                  <Link key={c.href} href={href(c.href)} className={pathname === c.href ? "active" : undefined}>
+                    <L lang={lang} hi={c.hi} en={c.en} />
                   </Link>
                 ))}
               </div>
             )}
           </div>
         ))}
-        <LangSwitch />
+        <LangSwitch pathname={fullPath} lang={lang} />
       </nav>
 
-      <Link href="/contact" className="cta">
-        {CTA}
+      <Link href={href("/contact")} className="cta">
+        {cta}
       </Link>
 
       <div className="header-right">
-        <LangSwitch />
+        <LangSwitch pathname={fullPath} lang={lang} />
         <button
           type="button"
           className="menu-btn"
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? (lang === "en" ? "Close menu" : "मेनू बंद करें") : lang === "en" ? "Open menu" : "मेनू खोलें"}
           aria-expanded={open}
           onClick={() => setOpen((o) => !o)}
         >
@@ -91,26 +118,26 @@ export default function SiteHeader() {
         {NAV.map((item) =>
           item.children ? (
             item.children.map((c, i) => (
-              <Link key={c.href} href={c.href} className={`${i ? "sub " : ""}${pathname === c.href ? "active" : ""}`}>
-                {i ? <L hi={c.hi} en={c.en} /> : <L hi={item.hi} en={item.en} />}
+              <Link key={c.href} href={href(c.href)} className={`${i ? "sub " : ""}${pathname === c.href ? "active" : ""}`}>
+                {i ? <L lang={lang} hi={c.hi} en={c.en} /> : <L lang={lang} hi={item.hi} en={item.en} />}
                 {!i && (
                   <small>
-                    <L hi={item.en} en={item.hi} />
+                    <L lang={lang} hi={item.en} en={item.hi} />
                   </small>
                 )}
               </Link>
             ))
           ) : (
-            <Link key={item.href} href={item.href} className={pathname === item.href ? "active" : undefined}>
-              <L hi={item.hi} en={item.en} />
+            <Link key={item.href} href={href(item.href)} className={pathname === item.href ? "active" : undefined}>
+              <L lang={lang} hi={item.hi} en={item.en} />
               <small>
-                <L hi={item.en} en={item.hi} />
+                <L lang={lang} hi={item.en} en={item.hi} />
               </small>
             </Link>
           ),
         )}
-        <Link href="/contact" className="cta">
-          {CTA}
+        <Link href={href("/contact")} className="cta">
+          {cta}
         </Link>
       </div>
     </header>
