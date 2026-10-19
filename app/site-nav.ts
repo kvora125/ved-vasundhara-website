@@ -37,7 +37,17 @@ export const NAV: NavItem[] = [
     ],
   },
   { hi: "संस्था", en: "Institution", href: "/organisation" },
-  { hi: "मीडिया", en: "Media", href: "/media" },
+  {
+    hi: "मीडिया",
+    en: "Media",
+    href: "/media",
+    children: [
+      { hi: "मीडिया एवं प्रेस", en: "Media & Press", href: "/media" },
+      { hi: "समाचार एवं अपडेट", en: "News & Updates", href: "/updates" },
+      { hi: "कार्यक्रम", en: "Events", href: "/events" },
+      { hi: "फोटो गैलरी", en: "Photo Gallery", href: "/gallery" },
+    ],
+  },
   {
     hi: "सहयोग",
     en: "Support",
@@ -60,5 +70,6 @@ export const NAV: NavItem[] = [
 ];
 
 export function isActive(item: NavItem, pathname: string) {
-  return [item.href, ...(item.children ?? []).map((c) => c.href)].includes(pathname);
+  // Also matches detail pages such as /updates/<slug>.
+  return [item.href, ...(item.children ?? []).map((c) => c.href)].some((h) => pathname === h || pathname.startsWith(`${h}/`));
 }
